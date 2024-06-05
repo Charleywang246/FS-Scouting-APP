@@ -24,7 +24,8 @@ function addRadio (config) {
     rightbox.setAttribute("class", "rightbox radio");
     for (let key in config.choices) {
         const radio = document.createElement("input");
-        radio.setAttribute("name", key);
+        radio.setAttribute("name", config.id);
+        radio.setAttribute("value", key);
         radio.setAttribute("type", "radio");
         rightbox.appendChild(radio);
         rightbox.append(config.choices[key]);
