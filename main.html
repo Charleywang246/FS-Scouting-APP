@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Shock Scouting APP</title>
+    <script src="scripts/main.js" type="module"></script>
+    <script>
+        var current_page = 1;
+        var scouter_name = "";
+        var game_number = 0;
+
+        function last_page () {
+            current_page -= 1;
+            change_display();
+        }
+
+        function next_page () {
+            if (current_page == 1) log_data();
+            if (current_page == 4) log_result();
+            current_page += 1;
+            change_display();
+        }
+
+        function reset () {
+            current_page = 1;
+            document.getElementById("scouter_name").innerText = scouter_name;
+            document.getElementById("game_number").setAttribute("value", game_number + 1);
+            change_display();
+        }
+
+        function log_data () {
+            scouter_name = document.getElementById("scouter_name").value;
+            game_number = Number(document.getElementById("game_number").value);
+        }
+
+        function change_display() {
+            switch (current_page) {
+                case 1:
+                    document.getElementById("prematch").setAttribute("style", "");
+                    document.getElementById("auto").setAttribute("style", "display: none;");
+                    document.getElementById("teleop").setAttribute("style", "display: none;");
+                    document.getElementById("endgame").setAttribute("style", "display: none;");
+                    document.getElementById("result").setAttribute("style", "display: none;");
+                    break;
+                case 2:
+                    document.getElementById("prematch").setAttribute("style", "display: none;");
+                    document.getElementById("auto").setAttribute("style", "");
+                    document.getElementById("teleop").setAttribute("style", "display: none;");
+                    document.getElementById("endgame").setAttribute("style", "display: none;");
+                    document.getElementById("result").setAttribute("style", "display: none;");
+                    break;
+                case 3:
+                document.getElementById("prematch").setAttribute("style", "display: none;");
+                    document.getElementById("auto").setAttribute("style", "display: none;");
+                    document.getElementById("teleop").setAttribute("style", "");
+                    document.getElementById("endgame").setAttribute("style", "display: none;");
+                    document.getElementById("result").setAttribute("style", "display: none;");
+                    break;
+                case 4:
+                document.getElementById("prematch").setAttribute("style", "display: none;");
+                    document.getElementById("auto").setAttribute("style", "display: none;");
+                    document.getElementById("teleop").setAttribute("style", "display: none;");
+                    document.getElementById("endgame").setAttribute("style", "");
+                    document.getElementById("result").setAttribute("style", "display: none;");
+                    break;
+                case 5:
+                document.getElementById("prematch").setAttribute("style", "display: none;");
+                    document.getElementById("auto").setAttribute("style", "display: none;");
+                    document.getElementById("teleop").setAttribute("style", "display: none;");
+                    document.getElementById("endgame").setAttribute("style", "display: none;");
+                    document.getElementById("result").setAttribute("style", "");
+                    break;
+            }
+        }
+
+        function minus (id) {
+            const e = document.getElementById(id);
+            e.setAttribute("value", Number(e.getAttribute("value")) - 1);
+        }
+
+        function plus (id) {
+            const e = document.getElementById(id);
+            e.setAttribute("value", Number(e.getAttribute("value")) + 1);
+        }
+
+        function log_result() {
+            
+        }
+    </script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <header>
+        <p id="game-name"></p>
+    </header>
+
+    <div class="div" id="prematch"></div>
+
+    <div class="div" id="auto" style="display: none;"></div>
+
+    <div class="div" id="teleop" style="display: none;"></div>
+
+    <div class="div" id="endgame" style="display: none;"></div>
+
+    <div class="div" id="result" style="display: none;"></div>
+
+    <footer>
+        <div id="sponsors">
+            <p>Sponsors: </p>
+            <a href="https://www.tsmc.com/english" target="_blank"><img src="images/TSMC.webp" alt="TSMC"></a>
+            <a href="https://www.milwaukeetool.asia/?redirect=no" target="_blank"><img src="images/Milwaukee.svg" alt="Milwaukee"></a>
+        </div>
+        <p>Scounting APP made by 7130 Future Shock</p>
+    </footer>
+</body>
+</html>

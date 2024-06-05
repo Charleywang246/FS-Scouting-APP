@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  height: 15vh;
+  font-size: 48px;
+  background: #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div {
+  width: 100%;
+  background-color: rgb(0, 255, 0);
+}
+.div .page_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.div .page_button button {
+  margin: 15px;
+  font-size: 48px;
+}
+.div .box {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.div .box .leftBox {
+  width: 47.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.div .box .rightbox {
+  width: 47.5%;
+}
+.div .box .rightbox input[type=text] {
+  width: 80px;
+  text-align: center;
+}
+.div .box .counter .counter_button {
+  background-color: black;
+  color: white;
+  text-align: center;
+  width: 19.2px;
+  height: 100%;
+}
+
+footer {
+  width: 100%;
+  background-color: rgb(72, 72, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+footer #sponsors {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 500px) {
+  footer #sponsors {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 500px) {
+  footer #sponsors {
+    flex-direction: row;
+  }
+}
+footer #sponsors p {
+  font-size: 32px;
+}
+footer #sponsors a img {
+  height: 10vh;
+}/*# sourceMappingURL=main.css.map */

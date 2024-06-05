@@ -1,0 +1,87 @@
+{
+    "prematch": [
+        {
+            "id": "scouter_name",
+            "type": "text",
+            "text": "紀錄者姓名",
+            "default_value": ""
+        },
+        {
+            "id": "game_name",
+            "type": "text",
+            "text": "區預賽名稱",
+            "default_value": "2024CAVE"
+        },
+        {
+            "id": "game_level",
+            "type": "radio",
+            "text": "比賽等級",
+            "choices": {
+                "pm": "練習賽",
+                "qm": "資格賽",
+                "sf": "準決賽",
+                "f": "決賽"
+            }
+        },
+        {
+            "id": "game_number",
+            "type": "text",
+            "text": "比賽場次",
+            "default_value": "1"
+        },
+        {
+            "id": "team_number",
+            "type": "text",
+            "text": "隊伍編號",
+            "default_value": ""
+        }
+    ],
+    "auto": [
+        {
+            "id": "auto_taxi",
+            "type": "checkbox",
+            "text": "離開起始區域"
+        },
+        {
+            "id": "auto_note_count",
+            "type": "counter",
+            "text": "進球數量",
+            "default_value": "0"
+        }
+    ],
+    "teleop": [
+        {
+            "id": "teleop_note_count",
+            "type": "counter",
+            "text": "進球數量",
+            "default_value": "0"
+        }
+    ],
+    "endgame": [
+        {
+            "id": "endgame_park",
+            "type": "checkbox",
+            "text": "回到自身聯盟區域"
+        },
+        {
+            "id": "driver_skill",
+            "type": "radio",
+            "text": "車手技術",
+            "choices": {
+                "a": "1(壞)",
+                "b": "2",
+                "c": "3",
+                "d": "4",
+                "e": "5(好)"
+            }
+        },
+        {
+            "id": "good_teammate",
+            "type": "checkbox",
+            "text": "好隊友?"
+        }
+    ],
+    "result": [
+
+    ]
+}
