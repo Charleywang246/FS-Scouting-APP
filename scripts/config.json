@@ -43,17 +43,51 @@
             "text": "離開起始區域"
         },
         {
-            "id": "auto_note_count",
+            "id": "auto_high_node",
             "type": "counter",
-            "text": "進球數量",
+            "text": "High Node數量",
             "default_value": "0"
+        },
+        {
+            "id": "auto_mid_node",
+            "type": "counter",
+            "text": "Mid Node數量",
+            "default_value": "0"
+        },
+        {
+            "id": "auto_low_node",
+            "type": "counter",
+            "text": "Low Node數量",
+            "default_value": "0"
+        },
+        {
+            "id": "auto_docked",
+            "type": "checkbox",
+            "text": "Docked<br>完全在上面但沒平衡or平衡但隊友碰到地"
+        },
+        {
+            "id": "auto_engaged",
+            "type": "checkbox",
+            "text": "Engaged<br>平衡"
         }
     ],
     "teleop": [
         {
-            "id": "teleop_note_count",
+            "id": "teleop_high_node",
             "type": "counter",
-            "text": "進球數量",
+            "text": "High Node數量",
+            "default_value": "0"
+        },
+        {
+            "id": "teleop_mid_node",
+            "type": "counter",
+            "text": "Mid Node數量",
+            "default_value": "0"
+        },
+        {
+            "id": "teleop_low_node",
+            "type": "counter",
+            "text": "Low Node數量",
             "default_value": "0"
         }
     ],
@@ -61,13 +95,45 @@
         {
             "id": "endgame_park",
             "type": "checkbox",
-            "text": "回到自身聯盟區域"
+            "text": "完全回到自身聯盟區域<br>但沒Dock or Engage"
         },
         {
-            "id": "driver_skill",
+            "id": "endgame_docked",
+            "type": "checkbox",
+            "text": "Docked<br>完全在上面但沒平衡or平衡但隊友碰到地"
+        },
+        {
+            "id": "endgame_engaged",
+            "type": "checkbox",
+            "text": "Engaged<br>平衡"
+        },
+        {
+            "id": "link",
+            "type": "counter",
+            "text": "聯盟總連線數量",
+            "default_value": "0"
+        },
+        {
+            "id": "disabled",
+            "type": "checkbox",
+            "text": "機器人未出現或一度完全靜止不動<br>若打勾下面不用填"
+        },
+        {
+            "id": "cycletime",
             "type": "radio",
-            "text": "車手技術",
+            "text": "平均循環時間",
             "choices": {
+                "a": "慢(>20s)",
+                "b": "平均(10~20s)",
+                "c": "快(<10s)"
+            }
+        },
+        {
+            "id": "driver_defense",
+            "type": "radio",
+            "text": "車手防守技術",
+            "choices": {
+                "x": "無",
                 "a": "1(壞)",
                 "b": "2",
                 "c": "3",
@@ -76,9 +142,22 @@
             }
         },
         {
-            "id": "good_teammate",
-            "type": "checkbox",
-            "text": "好隊友?"
+            "id": "driver_antidefense",
+            "type": "radio",
+            "text": "車手反防守技術",
+            "choices": {
+                "x": "無",
+                "a": "1(壞)",
+                "b": "2",
+                "c": "3",
+                "d": "4",
+                "e": "5(好)"
+            }
+        },
+        {
+            "id": "comment",
+            "type": "textarea",
+            "text": "其他評論或無法記錄的部分"
         }
     ],
     "result": [

@@ -72,7 +72,7 @@ function addElement (target, config) {
         const leftBox = document.createElement("div");
         leftBox.setAttribute("class", "leftBox");
         const text = document.createElement("p");
-        text.innerText = configuration.text;
+        text.innerHTML = configuration.text;
         leftBox.appendChild(text);
 
         box.appendChild(leftBox);
@@ -121,6 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let tag in game_config) {
         const e = document.getElementById(tag);
+        const title = document.createElement("p");
+        title.innerText = tag;
         const button_set = document.createElement("div");
         button_set.setAttribute("class", "page_button");
         if (tag != "prematch" && tag != "result")  {
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (tag == "prematch") button_set.appendChild(next_button.cloneNode(true));
         if (tag == "result") button_set.appendChild(reset_button.cloneNode(true));
-        e.appendChild(button_set.cloneNode(true));
+        e.appendChild(title);
         addElement(e, game_config[tag]);
         e.appendChild(button_set.cloneNode(true));
     }
