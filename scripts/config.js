@@ -1,3 +1,4 @@
+var game_config = `
 {
     "prematch": [
         {
@@ -7,7 +8,7 @@
             "default_value": ""
         },
         {
-            "id": "game_name",
+            "id": "regional_name",
             "type": "text",
             "text": "區預賽名稱",
             "default_value": "2024CAVE"
@@ -161,6 +162,5 @@
         }
     ],
     "result": [
-
     ]
-}
+}`;

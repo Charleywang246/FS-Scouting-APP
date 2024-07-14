@@ -4,68 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Shock Scouting APP</title>
-    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/main.js"></script>
     <script>
-        var current_page = 1;
-        var scouter_name = "";
-        var game_number = 0;
+        let current_page = "prematch"
+        var config = JSON.parse(game_config);
 
         function last_page () {
-            current_page -= 1;
+            switch (current_page) {
+                case "auto":
+                    current_page = "prematch"
+                    break
+                case "teleop":
+                    current_page = "auto"
+                    break
+                case "endgame":
+                    current_page = "teleop"
+                    break
+                case "result":
+                    current_page = "endgame"
+                    break
+            }
             change_display();
         }
 
         function next_page () {
-            if (current_page == 1) log_data();
-            if (current_page == 4) log_result();
-            current_page += 1;
+            if (!verify()) return;
+            switch (current_page) {
+                case "prematch":
+                    current_page = "auto"
+                    break
+                case "auto":
+                    current_page = "teleop"
+                    break
+                case "teleop":
+                    current_page = "endgame"
+                    break
+                case "endgame":
+                    // show_result()
+                    current_page = "result"
+                    break
+                case "result":
+                    reset()
+                    current_page = "prematch"
+                    break
+            }
             change_display();
         }
 
-        function reset () {
-            current_page = 1;
-            document.getElementById("scouter_name").innerText = scouter_name;
-            document.getElementById("game_number").value = game_number + 1;
-            change_display();
-        }
-
-        function log_data () {
-            scouter_name = document.getElementById("scouter_name").value;
-            game_number = Number(document.getElementById("game_number").value);
+        function verify () {
+            for (const part in config[current_page]) {
+                type = config[current_page][part].type
+                if (type == "text" && document.getElementById(config[current_page][part].id).value == "") {
+                    alert(config[current_page][part].text + "不可空白"); return false;
+                }
+                if (type == "radio" && document.querySelector("[name='" + config[current_page][part].id + "']:checked") == null) {
+                    alert(config[current_page][part].text + "不可空白"); return false;
+                }
+            }
+            return true
         }
 
         function change_display() {
             switch (current_page) {
-                case 1:
+                case "prematch":
                     document.getElementById("prematch").setAttribute("style", "");
                     document.getElementById("auto").setAttribute("style", "display: none;");
                     document.getElementById("teleop").setAttribute("style", "display: none;");
                     document.getElementById("endgame").setAttribute("style", "display: none;");
                     document.getElementById("result").setAttribute("style", "display: none;");
                     break;
-                case 2:
+                case "auto":
                     document.getElementById("prematch").setAttribute("style", "display: none;");
                     document.getElementById("auto").setAttribute("style", "");
                     document.getElementById("teleop").setAttribute("style", "display: none;");
                     document.getElementById("endgame").setAttribute("style", "display: none;");
                     document.getElementById("result").setAttribute("style", "display: none;");
                     break;
-                case 3:
-                document.getElementById("prematch").setAttribute("style", "display: none;");
+                case "teleop":
+                    document.getElementById("prematch").setAttribute("style", "display: none;");
                     document.getElementById("auto").setAttribute("style", "display: none;");
                     document.getElementById("teleop").setAttribute("style", "");
                     document.getElementById("endgame").setAttribute("style", "display: none;");
                     document.getElementById("result").setAttribute("style", "display: none;");
                     break;
-                case 4:
-                document.getElementById("prematch").setAttribute("style", "display: none;");
+                case "endgame":
+                    document.getElementById("prematch").setAttribute("style", "display: none;");
                     document.getElementById("auto").setAttribute("style", "display: none;");
                     document.getElementById("teleop").setAttribute("style", "display: none;");
                     document.getElementById("endgame").setAttribute("style", "");
                     document.getElementById("result").setAttribute("style", "display: none;");
                     break;
-                case 5:
-                document.getElementById("prematch").setAttribute("style", "display: none;");
+                case "result":
+                    document.getElementById("prematch").setAttribute("style", "display: none;");
                     document.getElementById("auto").setAttribute("style", "display: none;");
                     document.getElementById("teleop").setAttribute("style", "display: none;");
                     document.getElementById("endgame").setAttribute("style", "display: none;");
@@ -84,16 +115,100 @@
             e.setAttribute("value", Number(e.getAttribute("value")) + 1);
         }
 
-        function log_result() {
-            
+        function show_result() {
+            var result = "";
+            for (const section in config) {
+                for (const part in config[section]) {
+                    switch (config[section][part].type) {
+                        case "text":
+                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            break;
+                        case "textarea":
+                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            break;
+                        case "radio":
+                            result += config[section][part].text + ":" + document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\n";
+                            break;
+                        case "checkbox":
+                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).checked + "\n";
+                            break;
+                        case "counter":
+                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            break;
+                    }
+                }
+            }
+            const values = document.createElement("div");
+            values.innerText = result;
+            document.getElementById("result").appendChild(values)
         }
+
+        function copy_result() {
+            var result = "";
+            for (const section in config) {
+                for (const part in config[section]) {
+                    switch (config[section][part].type) {
+                        case "text":
+                            result += document.getElementById(config[section][part].id).value + "\t";
+                            break;
+                        case "textarea":
+                            result += document.getElementById(config[section][part].id).value + "\t";
+                            break;
+                        case "radio":
+                            result += document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\t";
+                            break;
+                        case "checkbox":
+                            result += document.getElementById(config[section][part].id).checked + "\t";
+                            break;
+                        case "counter":
+                            result += document.getElementById(config[section][part].id).value + "\t";
+                            break;
+                    }
+                }
+            }
+            navigator.clipboard.writeText(result);
+        }
+
+        function reset () {
+            for (const section in config) {
+                for (const part in config[section]) {
+                    switch (config[section][part].type) {
+                        case "text":
+                            if(config[section][part].id == "scouter_name") continue;
+                            if(config[section][part].id == "regional_name") continue;
+                            if(config[section][part].id == "game_number") {
+                                document.getElementById(config[section][part].id).value++;
+                                continue
+                            }
+                            document.getElementById(config[section][part].id).value = "";
+                            break;
+                        case "textarea":
+                            document.getElementById(config[section][part].id).value = "";
+                            break;
+                        case "radio":
+                            if(config[section][part].id == "game_level") continue;
+                            document.querySelector("[name='" + config[section][part].id + "']:checked").checked = false;
+                            break;
+                        case "checkbox":
+                            document.getElementById(config[section][part].id).checked = false;
+                            break;
+                        case "counter":
+                            document.getElementById(config[section][part].id).value = "0";
+                            break;
+                    }
+                }
+            }
+            current_page = "prematch";
+            change_display();
+        }
+
     </script>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
     <header>
-        <p id="game-name"></p>
+        <p id="game_name"></p>
     </header>
 
     <div class="div" id="prematch"></div>

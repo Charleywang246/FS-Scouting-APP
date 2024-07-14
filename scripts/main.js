@@ -1,4 +1,3 @@
-import game_config from "./config.json" with {type: "json"}
 function addText (config) {
     const rightBox = document.createElement("div");
     rightBox.setAttribute("class", "rightbox text");
@@ -103,7 +102,8 @@ function addElement (target, config) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("game-name").innerText = "CHARGED UP";
+    const config = JSON.parse(game_config);
+    document.getElementById("game_name").innerText = "CHARGED UP";
 
     const next_button = document.createElement("button");
     next_button.setAttribute("type", "button");
@@ -117,10 +117,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const reset_button = document.createElement("button");
     reset_button.setAttribute("type", "button");
-    reset_button.setAttribute("onclick", "reset();");
+    reset_button.setAttribute("onclick", "next_page();");
     reset_button.innerText = "Reset";
 
-    for (let tag in game_config) {
+    const copy_button = document.createElement("button");
+    copy_button.setAttribute("type", "button");
+    copy_button.setAttribute("onclick", "copy_result();");
+    copy_button.innerText = "Copy Data";
+
+    for (let tag in config) {
         const e = document.getElementById(tag);
         const title = document.createElement("p");
         title.innerText = tag;
@@ -131,9 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
             button_set.appendChild(next_button.cloneNode(true));
         }
         if (tag == "prematch") button_set.appendChild(next_button.cloneNode(true));
-        if (tag == "result") button_set.appendChild(reset_button.cloneNode(true));
+        if (tag == "result") {
+            button_set.appendChild(reset_button.cloneNode(true));
+            button_set.appendChild(copy_button.cloneNode(true));
+        }
         e.appendChild(title);
-        addElement(e, game_config[tag]);
+        addElement(e, config[tag]);
         e.appendChild(button_set.cloneNode(true));
     }
 });
