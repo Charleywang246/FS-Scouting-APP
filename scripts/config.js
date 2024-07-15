@@ -5,13 +5,7 @@ var game_config = `
             "id": "scouter_name",
             "type": "text",
             "text": "紀錄者姓名",
-            "default_value": ""
-        },
-        {
-            "id": "regional_name",
-            "type": "text",
-            "text": "區預賽名稱",
-            "default_value": "2024CAVE"
+            "default_value": "Wang"
         },
         {
             "id": "game_level",
@@ -22,7 +16,8 @@ var game_config = `
                 "qm": "資格賽",
                 "sf": "準決賽",
                 "f": "決賽"
-            }
+            },
+            "default_value": "qm"
         },
         {
             "id": "game_number",
@@ -35,6 +30,11 @@ var game_config = `
             "type": "text",
             "text": "隊伍編號",
             "default_value": ""
+        },
+        {
+            "id": "not_participated",
+            "type": "checkbox",
+            "text": "未上場比賽"
         }
     ],
     "auto": [
@@ -96,7 +96,7 @@ var game_config = `
         {
             "id": "endgame_park",
             "type": "checkbox",
-            "text": "完全回到自身聯盟區域<br>但沒Dock or Engage"
+            "text": "Park<br>完全回到自身聯盟區域<br>但沒Dock or Engage"
         },
         {
             "id": "endgame_docked",
@@ -117,7 +117,7 @@ var game_config = `
         {
             "id": "disabled",
             "type": "checkbox",
-            "text": "機器人未出現或一度完全靜止不動<br>若打勾下面不用填"
+            "text": "機器人一度完全靜止不動"
         },
         {
             "id": "cycletime",
@@ -127,7 +127,8 @@ var game_config = `
                 "a": "慢(>20s)",
                 "b": "平均(10~20s)",
                 "c": "快(<10s)"
-            }
+            },
+            "default_value": "b"
         },
         {
             "id": "driver_defense",
@@ -140,7 +141,8 @@ var game_config = `
                 "c": "3",
                 "d": "4",
                 "e": "5(好)"
-            }
+            },
+            "default_value": "x"
         },
         {
             "id": "driver_antidefense",
@@ -153,7 +155,8 @@ var game_config = `
                 "c": "3",
                 "d": "4",
                 "e": "5(好)"
-            }
+            },
+            "default_value": "x"
         },
         {
             "id": "comment",

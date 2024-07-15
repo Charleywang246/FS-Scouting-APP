@@ -26,6 +26,7 @@ function addRadio (config) {
         radio.setAttribute("name", config.id);
         radio.setAttribute("value", key);
         radio.setAttribute("type", "radio");
+        if (key == config.default_value) radio.checked = true;
         rightbox.appendChild(radio);
         rightbox.append(config.choices[key]);
         rightbox.append(document.createElement("br"));

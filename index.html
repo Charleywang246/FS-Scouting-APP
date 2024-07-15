@@ -33,6 +33,7 @@
             switch (current_page) {
                 case "prematch":
                     current_page = "auto"
+                    if (document.getElementById("not_participated").checked) current_page = "result";
                     break
                 case "auto":
                     current_page = "teleop"
@@ -41,7 +42,6 @@
                     current_page = "endgame"
                     break
                 case "endgame":
-                    // show_result()
                     current_page = "result"
                     break
                 case "result":
@@ -121,31 +121,29 @@
                 for (const part in config[section]) {
                     switch (config[section][part].type) {
                         case "text":
-                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            result += config[section][part].id + ":" + document.getElementById(config[section][part].id).value + "\n";
                             break;
                         case "textarea":
-                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            result += config[section][part].id + ":" + document.getElementById(config[section][part].id).value + "\n";
                             break;
                         case "radio":
-                            result += config[section][part].text + ":" + document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\n";
+                            result += config[section][part].id + ":" + document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\n";
                             break;
                         case "checkbox":
-                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).checked + "\n";
+                            result += config[section][part].id + ":" + document.getElementById(config[section][part].id).checked + "\n";
                             break;
                         case "counter":
-                            result += config[section][part].text + ":" + document.getElementById(config[section][part].id).value + "\n";
+                            result += config[section][part].id + ":" + document.getElementById(config[section][part].id).value + "\n";
                             break;
                     }
                 }
             }
-            const values = document.createElement("div");
-            values.innerText = result;
-            document.getElementById("result").appendChild(values)
         }
 
         function copy_result() {
             var result = "";
             for (const section in config) {
+                if (document.getElementById("not_participated").checked && section != "prematch") break;
                 for (const part in config[section]) {
                     switch (config[section][part].type) {
                         case "text":
