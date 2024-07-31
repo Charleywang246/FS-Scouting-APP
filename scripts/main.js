@@ -2,9 +2,9 @@ function addText (config) {
     const rightBox = document.createElement("div");
     rightBox.setAttribute("class", "rightbox text");
     const textBox = document.createElement("input");
-    textBox.setAttribute("id", config.id);
     textBox.setAttribute("type", "text");
-    textBox.setAttribute("value", config.default_value);
+    textBox.id = config.id;
+    textBox.value = config.default_value;
     rightBox.appendChild(textBox);
     return rightBox;
 }
@@ -13,7 +13,7 @@ function addTextarea (config) {
     const rightBox = document.createElement("div");
     rightBox.setAttribute("class", "rightbox textarea");
     const textarea = document.createElement("textarea");
-    textarea.setAttribute("id", config.id);
+    textarea.id = config.id;
     rightBox.appendChild(textarea);
     return rightBox;
 }
@@ -24,7 +24,7 @@ function addRadio (config) {
     for (let key in config.choices) {
         const radio = document.createElement("input");
         radio.setAttribute("name", config.id);
-        radio.setAttribute("value", key);
+        radio.value = key;
         radio.setAttribute("type", "radio");
         if (key == config.default_value) radio.checked = true;
         rightbox.appendChild(radio);
@@ -38,8 +38,8 @@ function addCheckbox (config) {
     const rightbox = document.createElement("div");
     rightbox.setAttribute("class", "rightbox checkbox");
     const checkbox = document.createElement("input");
-    checkbox.setAttribute("id", config.id);
     checkbox.setAttribute("type", "checkbox");
+    checkbox.id = config.id;
     rightbox.appendChild(checkbox);
     return rightbox;
 }
@@ -54,8 +54,8 @@ function addCounter (config) {
     minusBotton.setAttribute("onclick", "minus('" + config.id + "');");
     const valueBox = document.createElement("input");
     valueBox.setAttribute("type", "text");
-    valueBox.setAttribute("id", config.id);
-    valueBox.setAttribute("value", config.default_value);
+    valueBox.id = config.id;
+    valueBox.value = config.default_value;
     const plusBotton = document.createElement("p");
     plusBotton.innerText = "+";
     plusBotton.setAttribute("class", "counter_button");
