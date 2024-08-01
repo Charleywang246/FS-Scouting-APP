@@ -104,7 +104,7 @@ function addElement (target, config) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const config = JSON.parse(game_config);
-    document.getElementById("game_name").innerText = "CHARGED UP";
+    document.getElementById("game_name").innerText = "Crescendo";
 
     const next_button = document.createElement("button");
     next_button.setAttribute("type", "button");
