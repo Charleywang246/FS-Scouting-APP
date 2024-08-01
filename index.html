@@ -152,9 +152,9 @@
                         case "textarea":
                             result += document.getElementById(config[section][part].id).value + "\t";
                             break;
-                        // case "radio":
-                        //     result += document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\t";
-                        //     break;
+                        case "radio":
+                            result += document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\t";
+                            break;
                         case "checkbox":
                             result += document.getElementById(config[section][part].id).checked + "\t";
                             break;
@@ -182,9 +182,9 @@
                         case "textarea":
                             document.getElementById(config[section][part].id).value = "";
                             break;
-                        case "radio":
-                            document.querySelector("[name='" + config[section][part].id + "']:checked").checked = false;
-                            break;
+                        // case "radio":
+                        //     document.querySelector("[name='" + config[section][part].id + "']:checked").checked = false;
+                        //     break;
                         case "checkbox":
                             document.getElementById(config[section][part].id).checked = false;
                             break;
