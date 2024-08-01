@@ -64,6 +64,7 @@ var game_config = `
             "type": "radio",
             "text": "Endgame狀態",
             "choices": {
+                "no": "未得分",
                 "park": "Park",
                 "onstage": "Onstage",
                 "trap": "Trap"
