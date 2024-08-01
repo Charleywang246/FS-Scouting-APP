@@ -152,9 +152,9 @@
                         case "textarea":
                             result += document.getElementById(config[section][part].id).value + "\t";
                             break;
-                        case "radio":
-                            result += document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\t";
-                            break;
+                        // case "radio":
+                        //     result += document.querySelector("[name='" + config[section][part].id + "']:checked").value + "\t";
+                        //     break;
                         case "checkbox":
                             result += document.getElementById(config[section][part].id).checked + "\t";
                             break;
@@ -173,7 +173,6 @@
                     switch (config[section][part].type) {
                         case "text":
                             if(config[section][part].id == "scouter_name") continue;
-                            if(config[section][part].id == "regional_name") continue;
                             if(config[section][part].id == "game_number") {
                                 document.getElementById(config[section][part].id).value++;
                                 continue
@@ -184,7 +183,6 @@
                             document.getElementById(config[section][part].id).value = "";
                             break;
                         case "radio":
-                            if(config[section][part].id == "game_level") continue;
                             document.querySelector("[name='" + config[section][part].id + "']:checked").checked = false;
                             break;
                         case "checkbox":
